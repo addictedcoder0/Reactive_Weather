@@ -12,17 +12,22 @@ var Weather = React.createClass({
   },
 
   handleNewCity : function(city){
-    var that =  this;
+
     // currently due to CORS limitation we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
     // Basically all it requires a server which can serve CORS Based API .
+    // closing API calls , once server supports CORS , i will be running it.
+    // openWeatherMap.getTemp(city).then(function(temp){
+    //   that.setState({
+    //     cityname : city,
+    //     temperature : temp
+    //   });
+    // },function(errorMessage){alert(errorMessage);});
 
-    openWeatherMap.getTemp(city).then(function(temp){
-      that.setState({
-        cityname : city,
-        temperature : temp
-      });
-    },function(errorMessage){alert(errorMessage);});
-
+    // keyword used to set the breakpoints  : awesome point
+  //  debugger;
+    this.setState({
+      cityname : city
+    });
   },
 
   render: function(){
