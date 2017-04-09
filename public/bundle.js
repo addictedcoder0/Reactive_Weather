@@ -21879,6 +21879,7 @@
 	  render: function render() {
 	    var cityname = this.props.cityname;
 	    var temperature = this.props.temperature;
+
 	    return React.createElement(
 	      'div',
 	      null,

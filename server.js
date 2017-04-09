@@ -6,13 +6,14 @@ var app =  express();
 const PORT = process.env.PORT || 3000 ;
 
 //https issue
-app.use(function(req,res,next)){
-  if(req.headers['x-forwarded-proto'] === 'http'){
-    next();
-  }else{
-    res.redirect('http://'+ req.hostname + req.url);
-  }
-});
+// app.use(function(req,res,next){
+//   if(req.headers['x-forwarded-proto'] === 'http'){
+//     // debugger;
+//     next();
+//   }else{
+//     res.redirect('http://'+ req.hostname + req.url);
+//   }
+// });
 
 // tell that which folder you want to server content from
 app.use(express.static('public'));
