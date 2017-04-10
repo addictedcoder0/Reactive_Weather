@@ -21916,6 +21916,11 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(
+	        'h1',
+	        { className: 'text-center' },
+	        'Weather App'
+	      ),
 	      React.createElement(WeatherForm, { onNewCity: this.handleNewCity }),
 	      React.createElement(WeatherMessage, { cityname: cityname, temperature: temperature })
 	    );
@@ -25590,14 +25595,48 @@
 
 	var React = __webpack_require__(8);
 
+	var _require = __webpack_require__(225),
+	    Link = _require.Link;
+
 	var Examples = React.createClass({
 	  displayName: 'Examples',
 
 	  render: function render() {
 	    return React.createElement(
-	      'h3',
+	      'div',
 	      null,
-	      'Examples component'
+	      React.createElement(
+	        'h1',
+	        { className: 'text-center' },
+	        'Examples'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Here are a few examples locations to try out :'
+	      ),
+	      React.createElement(
+	        'ol',
+	        null,
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            Link,
+	            { to: '/?location=Chennai' },
+	            'Chennai'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            Link,
+	            { to: '/?location=Delhi' },
+	            'Delhi'
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
@@ -30703,11 +30742,14 @@
 	      null,
 	      React.createElement(Nav, null),
 	      React.createElement(
-	        'h2',
-	        null,
-	        'Main component'
-	      ),
-	      this.props.children
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'columns medium-6 large-4 small-centered' },
+	          this.props.children
+	        )
+	      )
 	    );
 	  }
 	});
