@@ -21891,7 +21891,7 @@
 
 	  handleNewCity: function handleNewCity(city) {
 
-	    // currently due to CORS limitation we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
+	    // currently due to CORS restriction we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
 	    // Basically all it requires a server which can serve CORS Based API .
 	    // closing API calls , once server supports CORS , i will be running it.
 	    // openWeatherMap.getTemp(city).then(function(temp){
@@ -25569,18 +25569,27 @@
 /* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var About = React.createClass({
-	  displayName: 'About',
+	  displayName: "About",
 
 	  render: function render() {
 	    return React.createElement(
-	      'h3',
+	      "div",
 	      null,
-	      'About component'
+	      React.createElement(
+	        "h1",
+	        { className: "text-center" },
+	        "About"
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        " this particular page provides details about the company info"
+	      )
 	    );
 	  }
 	});

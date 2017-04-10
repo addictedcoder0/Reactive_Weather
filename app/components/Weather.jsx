@@ -13,7 +13,7 @@ var Weather = React.createClass({
 
   handleNewCity : function(city){
 
-    // currently due to CORS limitation we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
+    // currently due to CORS restriction we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
     // Basically all it requires a server which can serve CORS Based API .
     // closing API calls , once server supports CORS , i will be running it.
     // openWeatherMap.getTemp(city).then(function(temp){
