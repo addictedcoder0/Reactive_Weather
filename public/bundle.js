@@ -21919,7 +21919,7 @@
 	      React.createElement(
 	        'h1',
 	        { className: 'text-center' },
-	        'Weather App'
+	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onNewCity: this.handleNewCity }),
 	      React.createElement(WeatherMessage, { cityname: cityname, temperature: temperature })
@@ -21933,30 +21933,26 @@
 /* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var WeatherMessage = React.createClass({
-	  displayName: 'WeatherMessage',
+	  displayName: "WeatherMessage",
 
 	  render: function render() {
 	    var cityname = this.props.cityname;
 	    var temperature = this.props.temperature;
 
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'h2',
-	        null,
-	        'cityname  ',
-	        cityname
-	      ),
-	      React.createElement(
-	        'h3',
-	        null,
-	        'temperature ',
+	        "h3",
+	        { className: "text-center" },
+	        "cityname  ",
+	        cityname,
+	        " has temperature ",
 	        temperature
 	      )
 	    );
@@ -21989,16 +21985,11 @@
 	    return React.createElement(
 	      "form",
 	      { onSubmit: this.onFormSubmit },
-	      React.createElement(
-	        "label",
-	        null,
-	        "CityName"
-	      ),
-	      React.createElement("input", { type: "text", ref: "city" }),
+	      React.createElement("input", { type: "text", ref: "city", placeholder: "CityName" }),
 	      React.createElement(
 	        "button",
-	        null,
-	        "Weather"
+	        { className: "button expanded hollow" },
+	        "Get Weather"
 	      )
 	    );
 	  }

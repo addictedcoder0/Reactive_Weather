@@ -37,7 +37,7 @@ var Weather = React.createClass({
 
     return(
       <div>
-        <h1 className="text-center">Weather App</h1>
+        <h1 className="text-center">Get Weather</h1>
         <WeatherForm onNewCity={this.handleNewCity} />
         <WeatherMessage cityname={cityname} temperature={temperature} />
       </div>
