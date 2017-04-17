@@ -8,7 +8,7 @@ var WeatherMessage = React.createClass({
 
     return(
       <div>
-        <h3 className="text-center">cityname  {cityname} has temperature {temperature}</h3>
+        <h3 className="text-center">city : {cityname} has current temperature {temperature} (Celcius)</h3>
       </div>
     );
   }

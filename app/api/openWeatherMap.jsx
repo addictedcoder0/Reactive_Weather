@@ -1,30 +1,25 @@
-var axios =  require('axios');
-
-const darksky_WEATHER_API = 'https://api.darksky.net/forecast/572a8fc5cd6d3fe8ce9e229f8db4a540/13.082680,80.270718';
+var axios  = require('axios');
+const weather_url = "http://api.apixu.com/v1/current.json?key=f5ec2fba22a64dca88a51250171704&q=";
 
 /*
-darksky.net
-secret key : 572a8fc5cd6d3fe8ce9e229f8db4a540
-13.082680,80.270718
-
-https://api.darksky.net/forecast/572a8fc5cd6d3fe8ce9e229f8db4a540/13.082680,80.270718
-
-Browser CORS ISSUE
+service provider : apixu
+secret key : f5ec2fba22a64dca88a51250171704
+API is CORS Enabled
 */
 module.exports = {
   getTemp : function(location) {
     var encodedLocation = encodeURIComponent(location);
-    var requestUrl = `${darksky_WEATHER_API}`;
+    var requestUrl = `${weather_url}`+location;
 
     return axios.get(requestUrl).then( function (res){
       if(res.data.cod && res.data.message){
         throw new Error(res.data.message);
       }else{
-        return res.data.currently.temperature;
+        debugger
+        return res.data.current.temp_c;
       }
     }, function (res){
       throw new Error(res.data.message);
     });
-
   }
 }

@@ -21885,21 +21885,20 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      cityname: 'NYK',
-	      temperature: '27 0c'
+	      temperature: '27'
 	    };
 	  },
 
 	  handleNewCity: function handleNewCity(city) {
-
-	    // currently due to CORS restriction we are unable to consume the response , chrome : Version 56.0.2924.87 (64-bit)
-	    // Basically all it requires a server which can serve CORS Based API .
-	    // closing API calls , once server supports CORS , i will be running it.
-	    // openWeatherMap.getTemp(city).then(function(temp){
-	    //   that.setState({
-	    //     cityname : city,
-	    //     temperature : temp
-	    //   });
-	    // },function(errorMessage){alert(errorMessage);});
+	    var that = this;
+	    openWeatherMap.getTemp(city).then(function (temp) {
+	      that.setState({
+	        cityname: city,
+	        temperature: temp
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 
 	    // keyword used to set the breakpoints  : awesome point
 	    //  debugger;
@@ -21909,9 +21908,9 @@
 	  },
 
 	  render: function render() {
-
-	    var cityname = this.state.cityname;
-	    var temperature = this.state.temperature;
+	    var _state = this.state,
+	        cityname = _state.cityname,
+	        temperature = _state.temperature;
 
 	    return React.createElement(
 	      'div',
@@ -21950,10 +21949,11 @@
 	      React.createElement(
 	        "h3",
 	        { className: "text-center" },
-	        "cityname  ",
+	        "city : ",
 	        cityname,
-	        " has temperature ",
-	        temperature
+	        " has current temperature ",
+	        temperature,
+	        " (Celcius)"
 	      )
 	    );
 	  }
@@ -22001,31 +22001,27 @@
 /* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var axios = __webpack_require__(194);
-
-	var darksky_WEATHER_API = 'https://api.darksky.net/forecast/572a8fc5cd6d3fe8ce9e229f8db4a540/13.082680,80.270718';
+	var weather_url = "http://api.apixu.com/v1/current.json?key=f5ec2fba22a64dca88a51250171704&q=";
 
 	/*
-	darksky.net
-	secret key : 572a8fc5cd6d3fe8ce9e229f8db4a540
-	13.082680,80.270718
-
-	https://api.darksky.net/forecast/572a8fc5cd6d3fe8ce9e229f8db4a540/13.082680,80.270718
-
-	Browser CORS ISSUE
+	service provider : apixu
+	secret key : f5ec2fba22a64dca88a51250171704
+	API is CORS Enabled
 	*/
 	module.exports = {
 	  getTemp: function getTemp(location) {
 	    var encodedLocation = encodeURIComponent(location);
-	    var requestUrl = '' + darksky_WEATHER_API;
+	    var requestUrl = "" + weather_url + location;
 
 	    return axios.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.currently.temperature;
+	        debugger;
+	        return res.data.current.temp_c;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
