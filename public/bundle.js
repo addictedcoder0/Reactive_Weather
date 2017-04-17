@@ -22004,7 +22004,7 @@
 	"use strict";
 
 	var axios = __webpack_require__(194);
-	var weather_url = "http://api.apixu.com/v1/current.json?key=f5ec2fba22a64dca88a51250171704&q=";
+	var weather_url = "https://api.apixu.com/v1/current.json?key=f5ec2fba22a64dca88a51250171704&q=";
 
 	/*
 	service provider : apixu
