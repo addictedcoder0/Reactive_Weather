@@ -22020,7 +22020,6 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        debugger;
 	        return res.data.current.temp_c;
 	      }
 	    }, function (res) {
