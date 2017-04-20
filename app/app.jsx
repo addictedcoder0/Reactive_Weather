@@ -7,9 +7,12 @@ var Examples = require('Examples');
 var { Route,Router, IndexRoute, hashHistory} = require('react-router');
 var Main =  require('Main');
 
-//Load Foundation css , we are using style! (to inject css in style tag) ; css!(to inform require module that this is a css)
-require('style!css!foundation-sites/dist/foundation.min.css');
+//Load Foundation css , we are using style! (to inject css in style tag) ;
+//css!(to inform require module that this is a css)
+require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
+
+require('style!css!applicationStyles')
 
 ReactDOM.render(
   <Router history={hashHistory}>

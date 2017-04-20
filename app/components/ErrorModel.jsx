@@ -2,7 +2,7 @@ var React = require('react');
 
 var ErrorModel = React.createClass({
   componentDidMount : function(){
-    var model = new Foundation.Reveal($('error-model'));
+    var model = new Foundation.Reveal($('#error-model'));
     model.open();
   },
   render: function(){
