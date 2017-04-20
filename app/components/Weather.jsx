@@ -17,7 +17,9 @@ var Weather = React.createClass({
     var that = this;
     this.setState({
       isLoading : true,
-      error_Message : undefined
+      error_Message : undefined,
+      cityname:undefined,    // these are added so that in case of error the previous data don't show up
+      temperature:undefined
     });
 
     openWeatherMap.getTemp(city).then(function(temp){
@@ -33,7 +35,24 @@ var Weather = React.createClass({
       });
   });
 },
-
+// this is helping in example page search
+componentDidMount : function(){
+  var city = this.props.location.query.city;
+  if(city && city.length>0){
+    this.handleNewCity(city);
+    // in order to remove the city name from url , after search
+    window.location.hash = '#/';
+  }
+},
+// this is helping in Nav-search based search
+componentWillReceiveProps : function(newProps){
+  var city = newProps.location.query.city;
+  if(city && city.length>0){
+    this.handleNewCity(city);
+    // in order to remove the city name from url , after search
+    window.location.hash = '#/';
+  }
+},
   render: function(){
     var {cityname , temperature ,isLoading ,error_Message} = this.state;
 

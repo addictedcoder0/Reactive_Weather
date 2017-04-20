@@ -21898,7 +21898,9 @@
 	    var that = this;
 	    this.setState({
 	      isLoading: true,
-	      error_Message: undefined
+	      error_Message: undefined,
+	      cityname: undefined, // these are added so that in case of error the previous data don't show up
+	      temperature: undefined
 	    });
 
 	    openWeatherMap.getTemp(city).then(function (temp) {
@@ -21914,7 +21916,24 @@
 	      });
 	    });
 	  },
-
+	  // this is helping in example page search
+	  componentDidMount: function componentDidMount() {
+	    var city = this.props.location.query.city;
+	    if (city && city.length > 0) {
+	      this.handleNewCity(city);
+	      // in order to remove the city name from url , after search
+	      window.location.hash = '#/';
+	    }
+	  },
+	  // this is helping in Nav-search based search
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	    var city = newProps.location.query.city;
+	    if (city && city.length > 0) {
+	      this.handleNewCity(city);
+	      // in order to remove the city name from url , after search
+	      window.location.hash = '#/';
+	    }
+	  },
 	  render: function render() {
 	    var _state = this.state,
 	        cityname = _state.cityname,
@@ -25687,7 +25706,7 @@
 	          null,
 	          React.createElement(
 	            Link,
-	            { to: '/?location=Chennai' },
+	            { to: '/?city=Chennai' },
 	            'Chennai'
 	          )
 	        ),
@@ -25696,7 +25715,7 @@
 	          null,
 	          React.createElement(
 	            Link,
-	            { to: '/?location=Delhi' },
+	            { to: '/?city=Delhi' },
 	            'Delhi'
 	          )
 	        )
@@ -30837,7 +30856,13 @@
 
 	  onSearch: function onSearch(e) {
 	    e.preventDefault();
-	    alert('not yet wired up ... in progress');
+	    var city = this.refs.city.value;
+	    if (city && city.length > 0) {
+	      this.refs.city.value = '';
+	      var encodedCity = encodeURIComponent(city);
+	      console.log(encodedCity);
+	      window.location.hash = '#/?city=' + encodedCity;
+	    }
 	  },
 
 	  render: function render() {
@@ -30896,7 +30921,7 @@
 	            React.createElement(
 	              'li',
 	              null,
-	              React.createElement('input', { type: 'search', placeholder: 'Search Weather' })
+	              React.createElement('input', { type: 'search', ref: 'city', placeholder: 'Search Weather' })
 	            ),
 	            React.createElement(
 	              'li',
