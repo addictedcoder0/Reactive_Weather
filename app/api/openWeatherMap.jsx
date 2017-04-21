@@ -11,13 +11,15 @@ module.exports = {
     var requestUrl = `${weather_url}`+location;
 
     return axios.get(requestUrl).then( function (res){
-      if(res.data.cod && res.data.message){
-        throw new Error(res.data.message);
+      if(res.data.cod && res.response.data.error.message){
+
+        throw new Error(res.response.data.error.message);
       }else{
         return res.data.current.temp_c;
       }
     }, function (res){
-      throw new Error(res.data.message);
+        console.log(res.response.data.error.message);
+      throw new Error(res.response.data.error.message);
     });
   }
 }

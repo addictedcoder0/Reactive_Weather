@@ -29,6 +29,7 @@ var Weather = React.createClass({
         isLoading:false
       });
     },function(e){
+      console.log(e);
       that.setState({
         isLoading:false,
         error_Message:e.message
@@ -64,10 +65,10 @@ componentWillReceiveProps : function(newProps){
       }
 
     }
-
+    console.log(error_Message);
     function renderError(){
       if(typeof error_Message === 'string'){
-        return <ErrorModel />;
+        return (<ErrorModel message={error_Message}/>);
       }
     }
 
